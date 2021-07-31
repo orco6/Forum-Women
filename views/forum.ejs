@@ -1,0 +1,147 @@
+<%-include("partials/header")%>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="container">
+          <div class="row">
+
+            <div class="col-md">
+              <h1 class="forum-header">פורום תמיכה לנשים בסיכון</h1>
+              <h3>אל תהססי לשתף אם את מרגישה בסכנה - את לא לבד!</h3>
+            </div>
+            <div class="col col-lg-5">
+              <img class="forum-img" src="woman.jpg" alt="">
+
+            </div>
+          </div>
+        </div>
+
+        <div class="forum-container">
+          <div>
+            <h3 class="forum-title">תתי פורומים לתמיכה</h3>
+          </div>
+
+          <div class="forum-item">
+            <div class="row">
+              <div class="col-md-9">
+                <div class="forum-icon">
+                  <i class="fa fa-shield"></i>
+                </div>
+                <a href="/postList" class="forum-item-title">תמיכה ועזרה</a>
+                <div class="forum-sub-title">תשתפי כל מה שעולה על רוחך, הקהילה פה למענך להכוונה,ייעוץ וכל מה שתצטרכי.</div>
+              </div>
+              <div class="col-md-1 forum-info">
+                <span class="views-number">
+                  <%=postsAndViews[0].views%>
+                </span>
+                <div>
+                  <small>Views</small>
+                </div>
+              </div>
+
+              <div class="col-md-1 forum-info">
+                <span class="views-number">
+                  <%=postsAndViews[0].len%>
+                </span>
+                <div>
+                  <small>Posts</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="forum-item">
+            <div class="row">
+              <div class="col-md-9">
+                <div class="forum-icon">
+                  <i class="fa fa-bolt"></i>
+                </div>
+                <a href="/yourSelfPosts" class="forum-item-title">ספרי על עצמך</a>
+                <div class="forum-sub-title">שתפי את סיפור חייך, דרכי התמודדות ועצות לכאלה שנמצאות באותו מצב.</div>
+              </div>
+              <div class="col-md-1 forum-info">
+                <span class="views-number">
+                  <%=postsAndViews[1].views%>
+
+                </span>
+                <div>
+                  <small>Views</small>
+                </div>
+              </div>
+
+              <div class="col-md-1 forum-info">
+                <span class="views-number">
+                  <%=postsAndViews[1].len%>
+                </span>
+                <div>
+                  <small>Posts</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="forum-item">
+            <div class="row">
+              <div class="col-md-9">
+                <div class="forum-icon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                <a href="/eventList" class="forum-item-title">אירועים ומפגשים</a>
+                <div class="forum-sub-title">כאן יפורסמו אירועים ומפגשים חברתיים לייעוץ ותמיכה בין חברי הקהילה. מחכים
+                  לכן.</div>
+              </div>
+              <div class="col-md-1 forum-info">
+                <span class="views-number">
+                    <%=postsAndViews[2].views%>
+                </span>
+                <div>
+                  <small>Views</small>
+                </div>
+              </div>
+              <div class="col-md-1 forum-info">
+                <span class="views-number">
+                  <%=postsAndViews[2].len%>
+                </span>
+
+                <div>
+                  <small>Posts</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="forum-item">
+            <div class="row">
+              <div class="col-md-9">
+                <div class="forum-icon">
+                  <i class="fa fa-star"></i>
+                </div>
+                <a href="/articles" class="forum-item-title">כתבות</a>
+                <div class="forum-sub-title">כאן יפורסמו כתבות שמתמקדות באלימות כלפי נשים בארץ.</div>
+              </div>
+              <div class="col-md-1 forum-info">
+                <span class="views-number">
+                  <%=postsAndViews[3].views%>
+                </span>
+                <div>
+                  <small>Views</small>
+                </div>
+              </div>
+              <!-- <div class="col-md-1 forum-info">
+                <span class="views-number">
+                  652
+                </span>
+                <div>
+                  <small>Topics</small>
+                </div>
+              </div> -->
+              <div class="col-md-1 forum-info">
+                <span class="views-number">
+                  <%=postsAndViews[3].len%>
+                </span>
+                <div>
+                  <small>Posts</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%- include("partials/footer") %>

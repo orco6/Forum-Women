@@ -1,0 +1,152 @@
+<%- include("partials/header") %>
+
+<div class="container postlist-container">
+  <div class="main-body p-4">
+    <div class="postlist-inner-wrapper">
+
+      <!-- Inner main -->
+      <div class="postlist-inner-main">
+
+        <div class="postlist-inner-main-body p-0 p-sm-3 collapse forum-content show">
+
+          <div class="postlist-card mb-2">
+
+            <div class="postlist-card-body p-0 p-sm-3">
+              <div class="postlist-media forum-item">
+                  <div class="date-post">
+                      <div class="row">
+                        <div class="col-sm">
+                          <p style="margin-right:-40px;"><%=post.date%></p>
+                        </div>
+                        <div class="col-sm">
+                        <div class="nickname-img">
+                          <img src="<%=post.img%>" class="mr-3 rounded-circle" width="50" alt="User" />
+                          <br>
+                          <small class="name"><%=post.nickname%></small>
+                        </div>
+                      </div>
+                      </div>
+                  </div>
+
+
+                <div class="postlist-media-body">
+                  <p><a href="/posts/<%=post._id%>" class="text-body"><%=post.title%> </a></p>
+
+
+                  <p>
+                    <%=post.content%>
+                  </p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <%post.comments.forEach(function(post){%>
+          <div class="postlist-card mb-2">
+
+
+
+            <div class="postlist-card-body p-0 p-sm-3">
+              <div class="postlist-media forum-item">
+                  <div class="date-post">
+                      <div class="row">
+                        <div class="col-sm">
+                          <p style="margin-right:-40px;"><%=post.date%></p>
+                        </div>
+                        <div class="col-sm">
+                        <div class="nickname-img">
+                          <img src="<%=post.img%>" class="mr-3 rounded-circle" width="50" alt="User" />
+                          <br>
+                          <small class="name"><%=post.nickname%></small>
+                        </div>
+                      </div>
+                      </div>
+                  </div>
+
+
+                <div class="postlist-media-body">
+
+                  <p class="text-secondary">
+                    <%=post.content%>
+                  </p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <%})%>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+
+        <!-- Add comments -->
+        <%if (user.nickname == "guest"){%>
+        <div class="container" style="text-align:center;margin-bottom:10px;">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="wrapper wrapper-content animated fadeInRight">
+
+                <div class="ibox-content m-b-sm border-bottom">
+                  <div class="p-xs">
+                    <h3>אם תרצי להגיב, הירשמי לאתר או התחברי.</h3>
+                    <h3>אל דאגה, ההרשמה היא אנונימית באמצעות כינויים בלבד.</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <%}else{%>
+        <div class="" style="margin:20px;">
+          <form class="" action="/posts/<%=post._id%>" method="post">
+            <textarea name="comment" style="width:100%;" rows="4" cols="80"></textarea>
+            <br>
+            <button class="btn btn-primary" style="margin-top:5px;width:100%;" type="submit" name="addCommentButton">Add comment</button>
+          </form>
+        </div>
+        <%}%>
+
+
+      <!-- New Thread Modal -->
+      <div class="modal fade" id="threadModal" tabindex="-1" role="dialog" aria-labelledby="threadModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <form>
+              <div class="modal-header d-flex align-items-center bg-primary text-white">
+                <h6 class="modal-title mb-0" id="threadModalLabel">New Discussion</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="threadTitle">Title</label>
+                  <input type="text" class="form-control" id="threadTitle" placeholder="Enter title" autofocus="" />
+                </div>
+                <textarea class="form-control summernote" style="display: none;"></textarea>
+
+                <div class="custom-file form-control-sm mt-3" style="max-width: 300px;">
+                  <input type="file" class="custom-file-input" id="customFile" multiple="" />
+                  <label class="custom-file-label" for="customFile">Attachment</label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Post</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include("partials/footer") %>

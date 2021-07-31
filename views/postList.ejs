@@ -1,0 +1,178 @@
+<%- include("partials/header") %>
+
+
+<%if(forum=="yourSelfPosts"){%>
+<div class="forum-detail">
+  <h1>ברוכה הבאה לפורום "ספרי על עצמך".</h1>
+  <h4>
+    כאן תוכלי לספר את סיפור חייך ולשתף את דרכי ההתמודדות, וכן תוכלי לקבל עצות מנשים שחוו מקרים דומים.
+  </h4>
+</div>
+<%}else if(forum=="postList"){%>
+<div class="forum-detail">
+  <h1>ברוכה הבאה לפורום "תמיכה ועזרה".</h1>
+  <h4>
+    כאן תוכלי לשתף כל מה שעולה על רוחך, הקהילה פה למענך להכוונה, ייעוץ וכל מה שתצטרכי.
+  </h4>
+</div>
+
+<%}else{%>
+<div class="forum-detail">
+  <h1>ברוכה הבאה לפורום "כתבות"</h1>
+  <h4>
+    כאן תוכלי לשתף כתבות בנושא אלימות נגד נשים.
+  </h4>
+</div>
+<%}%>
+
+
+
+<div class="container postlist-container">
+
+  <div class="main-body p-4">
+    <div class="postlist-inner-wrapper">
+
+      <!-- Inner main -->
+      <div class="postlist-inner-main">
+        <!-- Forum List -->
+        <div class="postlist-inner-sidebar-header">
+          <button class="btn btn-primary has-icon btn-block newpost-btn" type="button" data-toggle="modal" data-target="#threadModal">
+
+            פרסום חדש
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus mr-2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div class="postlist-inner-main-body p-0 p-sm-3 collapse forum-content show">
+          <%posts.forEach(function(post){%>
+<div class="postlist-card mb-2">
+
+  <div class="postlist-card-body p-0 p-sm-3">
+    <div class="postlist-media forum-item">
+      <div class="date-post">
+        <div class="row">
+          <%if(user.userType=="admin"){%>
+
+          <div class="col-sm">
+            <form class=""  action="/deletePost" method="post">
+              <input type="hidden" name="postId" value=<%=post._id%>>
+              <input type="hidden" name="forum" value=<%=forum%>>
+
+              <button type="submit" class="btn btn-danger">מחק פוסט</button>
+            </form>
+          </div>
+          <div class="col-sm">
+            <p><%=post.date%></p>
+        </div>
+          <%}else{%>
+
+          <div class="col-sm" style="margin-right:-410px">
+            <p><%=post.date%></p>
+        </div>
+        <%}%>
+        <div class="col-sm">
+          <div class="nickname-img">
+            <img src="<%=post.img%>" class="mr-3 rounded-circle" width="50" alt="User" />
+            <br>
+            <small class="name"><%=post.nickname%></small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="postlist-media-body">
+      <p><a href="/posts/<%=post._id%>" class="text-body"><%=post.title%> </a></p>
+
+      <%if(forum=="articleList"){%>
+      <p class="">
+        קישור לכתבה : <a href=<%=post.link%>>לחצי כאן</a>
+      </p>
+      <%}%>
+        <p class="text-secondary">
+          <%=post.content%>
+      </p>
+
+    </div>
+    <div class="text-muted small text-center align-self-center">
+      <span class="d-none d-sm-inline-block"><i class="fa fa-eye" aria-hidden="true"></i> <%=post.views.length%></span>
+      <span><i class="fa fa-comment-o" aria-hidden="true"></i> <%=post.comments.length%> </span>
+    </div>
+  </div>
+</div>
+</div>
+<%})%>
+</div>
+
+
+
+
+
+
+<!-- /Inner main body -->
+</div>
+<!-- /Inner main -->
+</div>
+
+<!-- New Thread Modal -->
+<div class="modal fade" id="threadModal" tabindex="-1" role="dialog" aria-labelledby="threadModalLabel" aria-hidden="true">
+  <%if(user.nickname !="guest"){%>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+
+      <form class="postlist-addpost" action="/<%=forum%>" method="post">
+        <div class="modal-header d-flex align-items-center bg-primary text-white">
+          <p class="modal-title mb-0" id="threadModalLabel">פרסום חדש</p>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="postlist-modal-body">
+          <div class="form-group">
+            <label class="addpost-title" for="threadTitle">כותרת</label>
+            <input type="text" name="postTitle" class="form-control" id="threadTitle" placeholder="הכניסי כותרת" autofocus="" />
+          </div>
+          <%if(forum=="articleList"){%>
+          <div class="form-group">
+            <label style="position:relative;left:697px;" class="addpost-title" for="threadTitle">קישור לכתבה</label>
+            <input type="text" name="link" class="form-control" id="threadTitle" placeholder="הכנס קישור לכתבה" autofocus="" />
+          </div>
+          <%}%>
+          <div class="custom-file form-control-md mt-3">
+            <label class="addpost-content-label" for="threadTitle">תוכן</label>
+            <br>
+            <textarea class="addpost-content-textarea" name="postContent" rows="5" cols="80"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary btn-md postlist-btn">פרסמי</button>
+          <button type="button" class="btn btn-danger btn-md postlist-btn" data-dismiss="modal">צאי</button>
+
+        </div>
+      </form>
+    </div>
+  </div>
+  <%}else{%>
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header d-flex align-items-center">
+                <h6 class="modal-title mb-0" id="threadModalLabel">!ראשית יש להתחבר לאתר</h6>
+              </div>
+            </div>
+          </div>
+
+          <%}%>
+    </div>
+  </div>
+
+  </div>
+
+
+
+
+
+
+  <%- include("partials/footer") %>

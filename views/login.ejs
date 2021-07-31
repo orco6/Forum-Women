@@ -1,0 +1,26 @@
+<%-include("partials/header") %>
+
+
+<form class="login-form" action="/login" method="post">
+
+  <div class="login-container">
+    <h1 class="login-title">התחברות לפורום תמיכה</h1>
+    <div class="login-imgcontainer">
+      <img class ="login-img" src="woman.png">
+    </div>
+    <label for="uname"><b>כינוי</b></label>
+    <input type="text" placeholder="Enter Username" name="nickname" required>
+
+    <label for="psw"><b>סיסמא</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+
+    <button type="submit">התחברי</button>
+    <%if(logged=="true"){%>
+      <h5 class="error-msg">כינוי או סיסמא אינם נכונים! נסי שוב.</h5>
+    <%}%>
+  </div>
+
+
+  </form>
+
+  <%-include("partials/footer") %>

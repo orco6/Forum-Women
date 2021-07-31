@@ -1,0 +1,38 @@
+
+<%- include("partials/header") %>
+
+
+
+
+  <form class ="register-form" action="/register" method="post">
+    <div class="register-container">
+      <div class="">
+
+        <h1>הרשמה</h1>
+        <p>אנא מלאי שדות אלה כדי ליצור חשבון.</p>
+        <hr class="register-hr">
+      </div>
+      <div class="register-input">
+        <label for="email"><b>כינוי</b></label>
+        <input type="text" placeholder="Enter Nickname" name="nickname" id="email" required>
+
+        <label for="psw"><b>סיסמא</b></label>
+        <input type="password" placeholder="Enter Password" name="password" id="psw" required>
+      </div>
+      <div class="register-check">
+        <%if(isExist=="true"){%>
+        <h6>הכינוי תפוס, בחרי כינוי אחר.</h6>
+        <%}%>
+      </div>
+      <hr>
+
+      <button type="submit" class="registerbtn">הירשמי</button>
+
+
+
+
+    </div>
+
+  </form>
+
+  <%- include("partials/footer") %>
